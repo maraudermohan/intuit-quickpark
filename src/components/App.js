@@ -2,7 +2,6 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index.js';
 import GameArea from './GameArea.js';
-import Fetch from 'react-fetch';
 
 class App extends React.Component {
   constructor(props, context) {
