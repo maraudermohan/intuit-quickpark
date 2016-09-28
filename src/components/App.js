@@ -11,20 +11,16 @@ class App extends React.Component {
       location : ''
     }
   }
-  componentDidMount() {
 
-  }
   initGeolocation() {
-    console.log("helo");
+    console.log("hello");
     if (navigator && navigator.geolocation) {
       console.log("if");
-            navigator.geolocation.getCurrentPosition(this.successCallback.bind(this), this.errorCallback);
+            navigator.geolocation.getCurrentPosition(this.successCallback.bind(this));
     } else {
             console.log('Geolocation is not supported');
     }
   }
- 
-  errorCallback() {}
  
   successCallback() {
       console.log(arguments[0]);
