@@ -1,6 +1,6 @@
 {
-  "name": "image-tile-game",
-  "version": "2.0.0",
+  "name": "intuit-quickpark",
+  "version": "1.0.0",
   "description": "Game built over Starter kit by Cory House",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
