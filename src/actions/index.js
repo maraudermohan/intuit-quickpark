@@ -1,7 +1,7 @@
-export const login_user = (username) => {
+export const login_user = (username,isAccessible, parkedSpot) => {
   return {
     type: 'LOGIN_USER',
-    username
+    username,isAccessible, parkedSpot
   };
 }
 export const updateRowCol = (rowLength, colLength, tileWidth, tileHeight) => {

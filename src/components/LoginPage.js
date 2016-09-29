@@ -38,11 +38,44 @@ class LoginPage extends React.Component {
   disableBtn() {
     return (this.state.userName.length)? false : true;
   }
-  //Once an image choice is picked, updates the state and renders the GameArea
+  
+  checkDBForUser(userName) {
+    var dispatch = this.props.dispatch;
+    fetch("/api/user", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: userName
+      })
+    }).then(response => response.json()).then(function(json) {
+        if(json == null) {
+          console.log("new user");
+         fetch("/api/user/create", {
+              method: "POST",
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                username: userName
+              })
+            }).then(function() {
+              dispatch(actions.login_user(userName,false,0));
+            });
+        }
+        else {
+          console.log("old user");
+         dispatch(actions.login_user(userName,json.isAccessible,json.parkedSpot));
+        }
+    });
+  }
+
   submitHandler(userName) {
     this.setCookie('userName',userName,1);
-    this.props.dispatch(actions.login_user(userName));
-    fetch('/api/user/create', { method : 'POST' , body: 'username=mohan1'}).then(response => console.log(response.json()));;
+    this.checkDBForUser(userName);    
   }
 
   componentDidUpdate() {

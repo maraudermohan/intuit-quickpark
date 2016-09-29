@@ -14,5 +14,7 @@ export default {
 	timer : '',
 	shuffleCounter : 50,
 	isNotPaused : true,
-	userName : ''
+	userName : '',
+	isAccessible : false,
+	ParkedSpot : 0
 };

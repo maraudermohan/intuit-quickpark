@@ -20,6 +20,24 @@ router.route('/user')
       res.json(user);
     });
   });
+router.route('/user/park')
+  .post(function (req, res) {
+    User.findOneAndUpdate({username: req.body.username}, {parkedSpot : req.body.parkedSpot }, function (err, user) {
+      if (err) {
+        res.send(err);
+      }
+      res.json(user);
+    });
+  });
+router.route('/user/free')
+  .post(function (req, res) {
+    User.findOneAndUpdate({username: req.body.username}, {parkedSpot : 0 },  function (err, user) {
+      if (err) {
+        res.send(err);
+      }
+      res.json(user);
+    });
+  });
 
 router.route('/user/create')
   .post(function (req, res) {
@@ -48,5 +66,26 @@ router.route('/user/create')
     }
     );
   });
+
+  router.route('/user/remove')
+  .post(function (req, res) {
+    User.remove({username: req.body.username}, function (err, user) {
+      if (err) {
+        res.send(err);
+      }
+      res.json(user);
+    });
+  });
+
+  router.route('/user/removeall')
+  .post(function (req, res) {
+    User.remove(function (err, user) {
+      if (err) {
+        res.send(err);
+      }
+      res.json(user);
+    });
+  });
+
 
 module.exports = router;
