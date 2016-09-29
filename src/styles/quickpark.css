@@ -56,14 +56,16 @@ body h1, body h2 , body h3 , body h4 {
 }
 .parkcar {
 	width: 100%;
-	height: auto;
+	height: 100%;
 	background-color: #EAEAEA;
+	overflow: scroll;
 }
 .quickpark {
 	height: 80px;
 	width: 80px;
 	display: inline-block;
 	background-size: contain;
+	margin-right: 20px;
 }
 .header {
 	width: 100%;
@@ -75,12 +77,87 @@ body h1, body h2 , body h3 , body h4 {
 	-webkit-align-items: center;
 	align-items: center;
 	background-color: #000;
+	z-index : 5;
 }
 .logout {
 	width: 120px;
 	height: 50px;
-	margin-left:10px;
+	margin-left:20px;
 }
+.building-title {
+	width: 100%;
+	padding: 20px 0 20px 20px;
+	background-color: rgba(0,0,0,0.7);
+	text-align: left;
+}
+.building {
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+.building.b1 {
+	margin-top: 140px;
+}
+.btn.btn-primary.parkinglot {
+	width: 250px;
+	height : 150px ;
+	font-size : 30px;
+	margin : 20px;
+	background-color: limegreen;
+    border-color: #2e6da4;
+}
+.btn.btn-primary.parkinglot[disabled] {
+	background-color: tomato;
+}
+.freespot {
+	width: 100%;
+	height: 100%;
+	background-color: #EAEAEA;
+	color: black;
+	-webkit-flex-direction : column;
+	flex-direction : column;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+.freespot h1, .freespot h2, .freespot h3, .freespot h4 {
+	color: black !important;
+}
+.twobuttons {
+	position: absolute;
+	top:100px;
+	width: 100%;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+	-webkit-align-items: center;
+	align-items: center;
+	background-color: rgba(0,0,0,0.9);
+	z-index: 3;
+}
+.togglebutton {
+	width: 35%;
+	height: 40px;
+	margin: 0px 40px;
+}
+.buildingcontainer {
+	width: 100%;
+	height: 100%;
+	background-color: #EAEAEA;
+	overflow: scroll;
+	display:none;
+	z-index:3;
+}
+.mapcontainer {
+	margin-top: 95px;
+	width: 100%;
+	height: 100%;
+	z-index:1;
+}
+
 
 .appContainer {
 	text-align: center;

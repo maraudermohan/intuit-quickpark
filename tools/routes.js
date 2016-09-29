@@ -22,7 +22,7 @@ router.route('/user')
   });
 router.route('/user/park')
   .post(function (req, res) {
-    User.findOneAndUpdate({username: req.body.username}, {parkedSpot : req.body.parkedSpot }, function (err, user) {
+    User.findOneAndUpdate({username: req.body.username}, {$set:{parkedSpot : req.body.parkedSpot }}, function (err, user) {
       if (err) {
         res.send(err);
       }
@@ -31,7 +31,7 @@ router.route('/user/park')
   });
 router.route('/user/free')
   .post(function (req, res) {
-    User.findOneAndUpdate({username: req.body.username}, {parkedSpot : 0 },  function (err, user) {
+    User.findOneAndUpdate({username: req.body.username}, {$set:{parkedSpot : 0 }},  function (err, user) {
       if (err) {
         res.send(err);
       }
@@ -88,32 +88,31 @@ router.route('/user/create')
   });
   router.route('/parking')
   .post(function (req, res) {
-    Parking.findOne({lotname: req.body.lotname}, function (err, user) {
+    Parking.findOne({lotname: req.body.lotname}, function (err, parking) {
       if (err) {
         res.send(err);
       }
-      res.json(user);
+      res.json(parking);
+    });
+  });
+  router.route('/parking/building')
+  .post(function (req, res) {
+    Parking.find({building: req.body.building}, function (err, parking) {
+      if (err) {
+        res.send(err);
+      }
+      res.json(parking);
     });
   });
 router.route('/parking/park')
   .post(function (req, res) {
-    Parking.findOneAndUpdate({lotname: req.body.lotname}, {occupied : req.body.occupied }, function (err, user) {
+    User.findOneAndUpdate({lotname: req.body.lotname}, {$set:{occupied : null }},  function (err, user) {
       if (err) {
         res.send(err);
       }
       res.json(user);
     });
   });
-router.route('/parking/free')
-  .post(function (req, res) {
-    Parking.findOneAndUpdate({lotname: req.body.lotname}, {occupied : null },  function (err, user) {
-      if (err) {
-        res.send(err);
-      }
-      res.json(user);
-    });
-  });
-
 router.route('/parking/create')
   .post(function (req, res) {
     var parking = new Parking();
@@ -136,32 +135,32 @@ router.route('/parking/create')
 
   router.route('/parking/all')
   .post(function (req, res) {
-    Parking.find(function (err, user) {
+    Parking.find(function (err, parking) {
       if (err) {
         res.send(err);
       }
-      res.json(user);
+      res.json(parking);
     }
     );
   });
 
   router.route('/parking/remove')
   .post(function (req, res) {
-    Parking.remove({lotname: req.body.lotname}, function (err, user) {
+    Parking.remove({lotname: req.body.lotname}, function (err, parking) {
       if (err) {
         res.send(err);
       }
-      res.json(user);
+      res.json(parking);
     });
   });
 
   router.route('/parking/removeall')
   .post(function (req, res) {
-    Parking.remove(function (err, user) {
+    Parking.remove(function (err, parking) {
       if (err) {
         res.send(err);
       }
-      res.json(user);
+      res.json(parking);
     });
   });
 

@@ -4,6 +4,12 @@ export const login_user = (username,isAccessible, parkedSpot) => {
     username,isAccessible, parkedSpot
   };
 }
+export const updateloc = (content) => {
+  return {
+    type: 'UPDATE_LOCATION',
+    content
+  };
+}
 export const updateRowCol = (rowLength, colLength, tileWidth, tileHeight) => {
   return {
     type: 'UPDATE_ROW_COL',

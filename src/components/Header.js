@@ -10,7 +10,6 @@ class Header extends React.Component {
   setCookie(cname, cvalue, exdays) {
 
     var expires = "expires="+exdays;
-    console.log(cname + "=" + cvalue + "; " + expires);
     document.cookie = cname + "=" + cvalue + "; " + expires;
   }
   
@@ -21,6 +20,7 @@ class Header extends React.Component {
   submitHandler() {
     var d = new Date("October 13, 2014 11:13:00");
     this.setCookie('userName' , "" , d);
+    this.props.dispatch(actions.login_user("",false,0));
   }
 
   smallLogo() {
@@ -39,8 +39,8 @@ class Header extends React.Component {
                 value="Log Out"
                 className="btn btn-primary logout"
                 onClick={this.submitHandler.bind(this)} />
+          <h2>Hello, {this.props.params.userName}</h2>
           {this.smallLogo()}
-          <div></div>
       </div>
     );
   }

@@ -18,12 +18,36 @@ class App extends React.Component {
   componentDidMount() {
     if ((this.getCookie('userName'))&&(!this.props.params.userName)) {
         this.props.dispatch(actions.login_user(this.getCookie('userName')));
-    }
-    fetch('/api/user/all', { method : 'POST'}).then(response => response.json()).then(function(json) {
-    for (var x in json) {
-      console.log(json[x]);
-    }
+    var dispatch = this.props.dispatch,
+    userName = this.getCookie('userName');
+    fetch("/api/user", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: userName
+      })
+    }).then(response => response.json()).then(function(json) {
+        dispatch(actions.login_user(userName,json.isAccessible,json.parkedSpot));
     });
+  }
+  this.initGeolocation.bind(this);
+  }
+  initGeolocation() {
+    if (navigator && navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this.successCallback.bind(this));
+    } else {
+            console.log('Geolocation is not supported');
+    }
+  }
+ 
+  successCallback() {
+      console.log("success");
+      console.log(arguments[0]);
+      var a = arguments[0].coords.latitude + " " + arguments[0].coords.longitude;
+      this.props.dispatchsetState({location : a});
   }
 
   getCookie(cname) {
@@ -42,10 +66,11 @@ class App extends React.Component {
   }
 
   userCurrentState() {
+    console.log("checkpoint"+ this.props.params);
+    console.log( this.props.params);
     if (!this.props.params.userName) {
-        return ([this.bigLogo(),
-          <LoginPage />])
-    } else if (this.props.params.ParkedSpot == 0 ) {
+        return <LoginPage />
+    } else if (this.props.params.parkedSpot == 0 ) {
         return <ParkCar />
     } else {
         return <FreeSpot />
@@ -56,12 +81,17 @@ class App extends React.Component {
     var position = {
         backgroundImage : "url('http://www.moreaboutmohan.com/files/assets/quickparkbig.png')"
     }
-    return <span className="quickparkbig" style={position} ></span>
+    console.log(!this.props.params.userName);
+    if (!this.props.params.userName) {
+        return <span className="quickparkbig" style={position} ></span>
+    }
+    
   }
 
   render() {
     return (
       <div className="flex-container app">
+        {this.bigLogo()}
         {this.userCurrentState()}
       </div>
     );

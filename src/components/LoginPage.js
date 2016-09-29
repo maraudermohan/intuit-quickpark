@@ -51,8 +51,8 @@ class LoginPage extends React.Component {
         username: userName
       })
     }).then(response => response.json()).then(function(json) {
+        console.log("new user");
         if(json == null) {
-          console.log("new user");
          fetch("/api/user/create", {
               method: "POST",
               headers: {
@@ -67,7 +67,6 @@ class LoginPage extends React.Component {
             });
         }
         else {
-          console.log("old user");
          dispatch(actions.login_user(userName,json.isAccessible,json.parkedSpot));
         }
     });
