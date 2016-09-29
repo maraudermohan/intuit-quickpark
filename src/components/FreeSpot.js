@@ -10,7 +10,7 @@ class FreeSpot extends React.Component {
   render() {
     
     return (
-      <div className="appContainer">
+      <div className="freespot">
           Free Car
       </div>
     );

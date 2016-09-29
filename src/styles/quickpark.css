@@ -39,9 +39,48 @@ body h1, body h2 , body h3 , body h4 {
 	background-repeat: no-repeat;
 	background-size: contain;
 }
-
-
-
+.login-page {
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	border: 3px solid white;
+    border-radius: 10px;
+    padding: 10px 10px 20px 10px;
+}
+.login-page .inputURL {
+	width: 60%;
+    margin-right: 20px;
+}
+.parkcar {
+	width: 100%;
+	height: auto;
+	background-color: #EAEAEA;
+}
+.quickpark {
+	height: 80px;
+	width: 80px;
+	display: inline-block;
+	background-size: contain;
+}
+.header {
+	width: 100%;
+	height: 100px;
+	position: fixed;
+	top :0;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+	-webkit-align-items: center;
+	align-items: center;
+	background-color: #000;
+}
+.logout {
+	width: 120px;
+	height: 50px;
+	margin-left:10px;
+}
 
 .appContainer {
 	text-align: center;

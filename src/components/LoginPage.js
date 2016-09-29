@@ -86,7 +86,7 @@ class LoginPage extends React.Component {
   render() {
     
     return (
-      <div className="login-page">
+      <div className="login-page flex-container">
               <h4>Tell us who you are : <br/><br/></h4>
               <input
                 type="text"
@@ -96,7 +96,7 @@ class LoginPage extends React.Component {
               <input
                 type="submit"
                 disabled={this.disableBtn()}
-                value="Import"
+                value="Sign In"
                 className="btn btn-primary"
                 onClick={this.submitHandler.bind(this,this.state.userName)} />
       </div>

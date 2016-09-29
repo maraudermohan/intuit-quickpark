@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index.js';
+import Header from './Header.js';
 
 class ParkCar extends React.Component {
   constructor(props, context) {
@@ -10,8 +11,9 @@ class ParkCar extends React.Component {
   render() {
     
     return (
-      <div className="appContainer">
-          Park your car
+      <div className="parkcar">
+
+          <Header />
       </div>
     );
   }

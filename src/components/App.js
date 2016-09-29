@@ -43,7 +43,8 @@ class App extends React.Component {
 
   userCurrentState() {
     if (!this.props.params.userName) {
-        return <LoginPage />
+        return ([this.bigLogo(),
+          <LoginPage />])
     } else if (this.props.params.ParkedSpot == 0 ) {
         return <ParkCar />
     } else {
@@ -61,7 +62,6 @@ class App extends React.Component {
   render() {
     return (
       <div className="flex-container app">
-        {this.bigLogo()}
         {this.userCurrentState()}
       </div>
     );
