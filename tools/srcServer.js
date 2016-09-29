@@ -18,7 +18,7 @@ const compiler = webpack(config);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var dbURI = 'mongodb://heroku_tpp6p2h8:dl3e9ntv5i2j5ns5lijb9rrgii@ds017672.mlab.com:17672/heroku_tpp6p2h8';
+var dbURI = 'mongodb://localhost/ConnectionTest';
 mongoose.connect(dbURI);
 mongoose.connection.on('connected', function () {
   console.log('Mongoose default connection open to ' + dbURI);
