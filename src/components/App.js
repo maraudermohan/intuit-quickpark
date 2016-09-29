@@ -2,6 +2,8 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index.js';
 import LoginPage from './LoginPage.js';
+import fetch from 'isomorphic-fetch';
+
 
 class App extends React.Component {
   constructor(props, context) {
@@ -15,6 +17,23 @@ class App extends React.Component {
     if ((this.getCookie('userName'))&&(!this.props.params.userName)) {
         this.props.dispatch(actions.login_user(this.getCookie('userName')));
     }
+    fetch("/api/user/create", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: "mohan1", 
+        isAccessible : true, 
+        parkedSpot : 4
+      })
+    });
+    fetch('/api/user/all', { method : 'POST'}).then(response => response.json()).then(function(json) {
+    for (var x in json) {
+      console.log(json[x]);
+    }
+    });
   }
 
   getCookie(cname) {

@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
 
 router.route('/user')
   .post(function (req, res) {
-    User.findOne({username: req.body.username, pwd: req.body.isAccessible}, function (err, user) {
+    User.findOne({username: req.body.username}, function (err, user) {
       if (err) {
         res.send(err);
       }
@@ -36,6 +36,17 @@ router.route('/user/create')
 
       res.json({message: 'User created.'});
     });
+  });
+
+  router.route('/user/all')
+  .post(function (req, res) {
+    User.find(function (err, user) {
+      if (err) {
+        res.send(err);
+      }
+      res.json(user);
+    }
+    );
   });
 
 module.exports = router;

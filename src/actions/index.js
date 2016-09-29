@@ -1,3 +1,9 @@
+export const login_user = (username) => {
+  return {
+    type: 'LOGIN_USER',
+    username
+  };
+}
 export const updateRowCol = (rowLength, colLength, tileWidth, tileHeight) => {
   return {
     type: 'UPDATE_ROW_COL',

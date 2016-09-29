@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index.js';
+import fetch from 'isomorphic-fetch';
 
 class LoginPage extends React.Component {
   constructor(props, context) {
@@ -41,6 +42,7 @@ class LoginPage extends React.Component {
   submitHandler(userName) {
     this.setCookie('userName',userName,1);
     this.props.dispatch(actions.login_user(userName));
+    fetch('/api/user/create', { method : 'POST' , body: 'username=mohan1'}).then(response => console.log(response.json()));;
   }
 
   componentDidUpdate() {
