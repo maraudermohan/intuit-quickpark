@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
 
 router.route('/user')
   .post(function (req, res) {
-    User.findOne({username: req.body.username, pwd: req.body.pwd}, function (err, user) {
+    User.findOne({username: req.body.username, pwd: req.body.isAccessible}, function (err, user) {
       if (err) {
         res.send(err);
       }
@@ -25,10 +25,8 @@ router.route('/user/create')
   .post(function (req, res) {
     var user = new User();
     user.username = req.body.username;
-    user.pwd = req.body.pwd;
-    user.firstName = req.body.firstName;
-    user.lastName = req.body.lastName;
     user.isAccessible = req.body.isAccessible || false;
+    user.parkedSpot = req.body.parkedSpot || 0;
 
     // save the user
     user.save(function (err) {

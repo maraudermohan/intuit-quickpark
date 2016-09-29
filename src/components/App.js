@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index.js';
-import GameArea from './GameArea.js';
+import LoginPage from './LoginPage.js';
 
 class App extends React.Component {
   constructor(props, context) {
@@ -11,31 +11,45 @@ class App extends React.Component {
     }
   }
 
-  initGeolocation() {
-    console.log("hello");
-    if (navigator && navigator.geolocation) {
-      console.log("if");
-            navigator.geolocation.getCurrentPosition(this.successCallback.bind(this));
-    } else {
-            console.log('Geolocation is not supported');
+  componentDidMount() {
+    if ((this.getCookie('userName'))&&(!this.props.params.userName)) {
+        this.props.dispatch(actions.login_user(this.getCookie('userName')));
     }
   }
- 
-  successCallback() {
-      console.log(arguments[0]);
-      var a = arguments[0].coords.latitude + " " + arguments[0].coords.longitude;
-      this.setState({location : a});
+
+  getCookie(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for(var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+          }
+      }
+      return "";
+  }
+
+  userCurrentState() {
+    if (!this.props.params.userName) {
+        return <LoginPage />
+    }
+  }
+
+  bigLogo() {
+    var position = {
+        backgroundImage : "url('http://www.moreaboutmohan.com/files/assets/quickparkbig.png')"
+    }
+    return <span className="quickparkbig" style={position} ></span>
   }
 
   render() {
     return (
-      <div className="appContainer">
-        {this.state.location}
-        <input
-          type="submit"
-          value="Import"
-          className="btn btn-primary"
-          onClick={this.initGeolocation.bind(this)} />
+      <div className="flex-container app">
+        {this.bigLogo()}
+        {this.userCurrentState()}
       </div>
     );
   }
@@ -43,6 +57,7 @@ class App extends React.Component {
 
     function mapStateToProps(state) {
       return {
+        params : state.params
       };
     }
 

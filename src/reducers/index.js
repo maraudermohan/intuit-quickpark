@@ -1,13 +1,9 @@
 import { combineReducers } from 'redux'
 import params from './updateParams'
-import tiles from './updateTiles'
-import list from './updateList'
 import initialState from './initialState';
 
 const appReducer = combineReducers({
-  params,
-  tiles,
-  list
+  params
 });
 
 const resetStore = appReducer(initialState, {}, {});

@@ -13,5 +13,6 @@ export default {
 	height : 0,
 	timer : '',
 	shuffleCounter : 50,
-	isNotPaused : true
+	isNotPaused : true,
+	userName : ''
 };
