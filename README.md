@@ -1,20 +1,14 @@
-#Image-Tile Game in React + Redux + ES6
+#Intuit HACKATHON
 
-#[Open App](https://image-tile-game.herokuapp.com/)
+#PARKING APP FOR INTUIT LOCATIONS
 
 ##Summary
-* I implemented this picture tile game using React + Redux.
-* Completed the coding and testing in span of a week.
-* Authored two child components - game-area and game-tile.
-* The top and left offset are the main states handled by the store.
-* Each tile's width and height are also initiated in the store.
-* Location of the empty-slot is updated and maintained by reducers.
-* Implemented an auto-shuffling feature for the tiles, using a click event.
-* Implemented the feature to choose from 6 different images or import an image from an external link.
-* Added info banners to indicate the win/lose conditions of the game.
-* Added the reset feature by resetting the store and re-initializing the app's state values.
-* Game-area's parameters are tweaked to fit the image's aspect ratio.
-* Added a countdown timer and loser state.
+* Developed this parking app in 24 hours, as part of Hackathon, Sep 28th 2016.
+* Built using React + Redux, JQuery and Bootstrap.
+* Connected to MongoDB using Mongoose.
+* Introduced features to navigate to currently available parking spot, using GoogleMapsAPI.
+* Also handles the use cases of Accessible parking, Carpool parking and visitor parking.
+* Successfully demo'd in front of the Hackathon judges.
 * This was built on using [Pluralsight Starter kit](http://www.pluralsight.com/author/cory-house). 
 
 
