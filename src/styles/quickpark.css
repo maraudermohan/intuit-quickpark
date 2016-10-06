@@ -40,6 +40,8 @@ body h1, body h2 , body h3 , body h4 {
 	background-size: contain;
 }
 .login-page {
+	-webkit-flex-direction : column;
+	flex-direction : column;
 	-webkit-justify-content: center;
 	justify-content: center;
 	-webkit-align-items: center;
@@ -48,11 +50,15 @@ body h1, body h2 , body h3 , body h4 {
 	flex-wrap: wrap;
 	border: 3px solid white;
     border-radius: 10px;
-    padding: 10px 10px 20px 10px;
+    padding: 10px 20px 20px 20px;
 }
 .login-page .inputURL {
-	width: 60%;
+	width: 200px;
     margin-right: 20px;
+}
+.login-page #isAccessible-check {
+	color: white;
+	margin : 10px;
 }
 .parkcar {
 	width: 100%;
@@ -101,6 +107,9 @@ body h1, body h2 , body h3 , body h4 {
 .building.b1 {
 	margin-top: 140px;
 }
+span.btn.btn-primary , input.btn.btn-primary {
+	background-color: #365EBF;
+}
 .btn.btn-primary.parkinglot {
 	width: 250px;
 	height : 150px ;
@@ -108,9 +117,14 @@ body h1, body h2 , body h3 , body h4 {
 	margin : 20px;
 	background-color: limegreen;
     border-color: #2e6da4;
+    -webkit-transition: transform 0.75s; 
+    transition: transform 0.75s;
+}
+.btn.btn-primary.parkinglot:hover {
+	transform : scale(1.1);
 }
 .btn.btn-primary.parkinglot[disabled] {
-	background-color: tomato;
+	background-color: darkgrey;
 }
 .freespot {
 	width: 100%;
@@ -131,17 +145,30 @@ body h1, body h2 , body h3 , body h4 {
 	position: absolute;
 	top:100px;
 	width: 100%;
-	-webkit-justify-content: space-between;
-	justify-content: space-between;
+	height: 40px;
 	-webkit-align-items: center;
 	align-items: center;
-	background-color: rgba(0,0,0,0.9);
+	background-color: rgba(0,0,0,0.8);
 	z-index: 3;
 }
-.togglebutton {
-	width: 35%;
+.twobuttons h3 {
+	width: 80%;
+	text-align: left;
+	padding-left: 20px;
+}
+.btn.togglebutton {
+	width: 12%;
 	height: 40px;
-	margin: 0px 40px;
+	border-radius: 0px;
+	padding-top: 10px;
+	font-size: 16px;
+}
+.btn.togglebutton.selected {
+	border:0;
+	-moz-box-shadow:    inset 0 0 10px #000000;
+   -webkit-box-shadow: inset 0 0 10px #000000;
+   box-shadow:         inset 0 0 10px #000000;
+   opacity: 0.8;
 }
 .buildingcontainer {
 	width: 100%;
@@ -149,182 +176,11 @@ body h1, body h2 , body h3 , body h4 {
 	background-color: #EAEAEA;
 	overflow: scroll;
 	display:none;
-	z-index:3;
+	padding-top: 130px;
 }
 .mapcontainer {
 	margin-top: 95px;
 	width: 100%;
 	height: 100%;
 	z-index:1;
-}
-
-
-.appContainer {
-	text-align: center;
-}
-div.disappear {
-	text-align: center;
-	margin: 20px; 
-}
-div.appear {
-	text-align: center;
-	margin: 5px; 
-	-webkit-justify-content: center;
-	justify-content: center;
-	-webkit-align-items: center;
-	align-items: center;
-}
-.timerh3 {
-	display: none;
-	margin: 0 0 0 20px;
-	line-height: 1;
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    padding: 0px 5px;
-}
-.timerh3.red {
-	color : red;
-}
-.btn.reset-btn {
-	display: none;
-}
-.pause-btn {
-	display: none;
-	width: 40px;
-    height: 38px;
-    padding: 6px 0 6px 0;
-    background-color: #337ab7;
-    border-color: #2e6da4;
-	-webkit-justify-content: center;
-	justify-content: center;
-	-webkit-align-items: center;
-	align-items: center;
-	border-radius: 5px;
-	border: 1px solid transparent;
-	position: relative;
-	left: -2px;
-}
-.pause-btn:hover {
-	background-color: #286090;
-    border-color: #204d74;
-}
-.icon-pause {
-	background-color: white;
-    height: 23px;
-    width: 6px;
-    display: inline-block;
-}
-.pause1 {
-    margin-right: 3px;
-}
-.pause2 {
-    margin-left: 3px;
-}
-.pause-btn.resume .pause1{
-	width: 0;
-    height: 0;
-    background-color: transparent;
-    border-left: 22px solid white;
-    border-top: 11px solid transparent;
-    border-bottom: 11px solid transparent;
-    margin: 0px; 
-}
-.pause-btn.resume .pause2{
-	width: 0;
-    height: 0;
-    border: 0;
-    margin: 0;
-}
-.inputURL {
-	width: 40%;
-    margin-right: 20px;
-}
-.image-item {
-	width: 266px;
-    height: 200px;
-    display: inline-block;
-    background-size: contain;
-    background-repeat: no-repeat;
-    margin: 10px;
-    cursor: pointer;
-    -webkit-transition: transform 1s;
-	-moz-transition: transform 1s;
-	transition: transform 1s;
-}
-.image-item:hover {
-	transform: scale(1.05);
-}
-.game-area-container.flex-container {
-	width: 100%;
-	height: auto;
-	-webkit-justify-content: center;
-	justify-content: center;
-	-webkit-align-items: center;
-	align-items: center;
-}
-div.game-area {
-	width : 0px;
-	height : auto;
-	padding: 0px;
-	position: relative;
-	background-color: #dddfd4;
-	border: 2px solid #000000;
-}
-.game-tile {
-	text-align: center;
-	color: white;
-	display: inline-block;
-	position: absolute;
-	background-color: blue;
-	border-radius: 5px;
-	border: thin solid black;
-	line-height: 0;
-}
-.game-area.ready .game-tile.left, .game-area.ready .game-tile.right,
-.game-area.ready .game-tile.top, .game-area.ready .game-tile.bottom {
-	border: thin solid red;
-	cursor: pointer;
-}
-.game-area.not-ready .game-tile {
-	-webkit-transition: left 0.02s, top 0.02s;
-	-moz-transition: left 0.02s, top 0.02s;
-	transition: left 0.02s, top 0.02s;
-}
-.game-area.ready .game-tile {
-	-webkit-transition: left 0.25s, top 0.25s;
-	-moz-transition: left 0.25s, top 0.25s;
-	transition: left 0.25s, top 0.25s;
-}
-.game-tile.empty {
-	display: inline-block;
-	position: absolute;
-	width: 0px;
-	height: 0px;
-	border: 0px;
-	line-height: 0;
-}
-.game-banner {
-	width: 100%;
-	height: 50%;
-	top: 25%;
-	text-align: center;
-	color: white;
-	text-shadow: 1px 1px 1px #000000;
-	position: absolute;
-	-webkit-justify-content: center;
-	justify-content: center;
-	-webkit-align-items: center;
-	align-items: center;
-}
-.win {
-	background-color: limegreen;
-}
-.lose {
-	background-color: tomato;
-}
-.shuffle {
-	background-color: rgba(0,0,0,0.5);
 }

@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index.js';
 import fetch from 'isomorphic-fetch';
+import $ from "jquery";
 
 class LoginPage extends React.Component {
   constructor(props, context) {
@@ -51,7 +52,6 @@ class LoginPage extends React.Component {
         username: userName
       })
     }).then(response => response.json()).then(function(json) {
-        console.log("new user");
         if(json == null) {
          fetch("/api/user/create", {
               method: "POST",
@@ -60,10 +60,11 @@ class LoginPage extends React.Component {
                 'Content-Type': 'application/json'
               },
               body: JSON.stringify({
-                username: userName
+                username: userName,
+                isAccessible: document.getElementById('checkbox').checked
               })
             }).then(function() {
-              dispatch(actions.login_user(userName,false,0));
+              dispatch(actions.login_user(userName,document.getElementById('checkbox').checked,0));
             });
         }
         else {
@@ -86,18 +87,21 @@ class LoginPage extends React.Component {
     
     return (
       <div className="login-page flex-container">
-              <h4>Tell us who you are : <br/><br/></h4>
-              <input
-                type="text"
-                className="inputURL"
-                placeholder="Intuit ID"
-                onChange={this.changeHandler.bind(this)} />
-              <input
-                type="submit"
-                disabled={this.disableBtn()}
-                value="Sign In"
-                className="btn btn-primary"
-                onClick={this.submitHandler.bind(this,this.state.userName)} />
+          <h4>Tell us who you are : <br/><br/></h4>
+          <div className='flex-container'> 
+            <input
+              type="text"
+              className="inputURL"
+              placeholder="Intuit-ID or Guest-Name"
+              onChange={this.changeHandler.bind(this)} />
+            <input
+              type="submit"
+              disabled={this.disableBtn()}
+              value="Sign In"
+              className="btn btn-primary"
+              onClick={this.submitHandler.bind(this,this.state.userName)} />
+          </div>
+          <div id='isAccessible-check'><input type='checkbox' id='checkbox'/>  Accessiblilty needed?</div>
       </div>
     );
   }

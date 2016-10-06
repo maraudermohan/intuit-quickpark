@@ -68,7 +68,7 @@ class Building extends React.Component {
   }
 
   renderTile(value, index) {
-      var disabled = (this.state.jsonX[index].occupied == "null") ? false : true;
+      var disabled = (this.state.jsonX[index].occupied) ? false : true;
       var lotname = this.state.jsonX[index].lotname;
       var url = "http://maps.google.com/?q="+this.state.jsonX[index].lat+","+this.state.jsonX[index].long;
       return <input

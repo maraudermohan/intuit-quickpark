@@ -95,6 +95,15 @@ router.route('/user/create')
       res.json(parking);
     });
   });
+  router.route('/parking/distinctbuildings')
+  .post(function (req, res) {
+    Parking.distinct('building', function (err, parking) {
+      if (err) {
+        res.send(err);
+      }
+      res.json(parking);
+    });
+  });
   router.route('/parking/building')
   .post(function (req, res) {
     Parking.find({building: req.body.building}, function (err, parking) {

@@ -1,5 +1,5 @@
 {
-  "name": "Intuit Quickpark",
+  "name": "intuit-quickpark",
   "version": "1.0.0",
   "description": "Parking App built during Intuit Hackathon",
   "scripts": {
@@ -25,7 +25,7 @@
     "redux": "3.6.0",
     "redux-thunk": "2.0.1",
     "toastr": "2.1.2",
-    "babel-cli": "6.18.0",
+    "babel-cli": "6.16.0",
     "babel-core": "6.17.0",
     "babel-loader": "6.2.4",
     "babel-plugin-react-display-name": "2.0.0",

@@ -5,6 +5,7 @@ import LoginPage from './LoginPage.js';
 import ParkCar from './ParkCar.js';
 import FreeSpot from './FreeSpot.js';
 import fetch from 'isomorphic-fetch';
+import $ from "jquery";
 
 
 class App extends React.Component {
@@ -18,22 +19,22 @@ class App extends React.Component {
   componentDidMount() {
     if ((this.getCookie('userName'))&&(!this.props.params.userName)) {
         this.props.dispatch(actions.login_user(this.getCookie('userName')));
-    var dispatch = this.props.dispatch,
-    userName = this.getCookie('userName');
-    fetch("/api/user", {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: userName
-      })
-    }).then(response => response.json()).then(function(json) {
-        dispatch(actions.login_user(userName,json.isAccessible,json.parkedSpot));
-    });
-  }
-  this.initGeolocation.bind(this);
+      var dispatch = this.props.dispatch,
+      userName = this.getCookie('userName');
+      fetch("/api/user", {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: userName
+        })
+      }).then(response => response.json()).then(function(json) {
+          dispatch(actions.login_user(userName,json.isAccessible,json.parkedSpot));
+      });
+    }
+    this.initGeolocation();
   }
   initGeolocation() {
     if (navigator && navigator.geolocation) {
@@ -44,10 +45,8 @@ class App extends React.Component {
   }
  
   successCallback() {
-      console.log("success");
-      console.log(arguments[0]);
       var a = arguments[0].coords.latitude + " " + arguments[0].coords.longitude;
-      this.props.dispatchsetState({location : a});
+      this.setState({location : a});
   }
 
   getCookie(cname) {
@@ -66,8 +65,6 @@ class App extends React.Component {
   }
 
   userCurrentState() {
-    console.log("checkpoint"+ this.props.params);
-    console.log( this.props.params);
     if (!this.props.params.userName) {
         return <LoginPage />
     } else if (this.props.params.parkedSpot == 0 ) {
@@ -81,7 +78,6 @@ class App extends React.Component {
     var position = {
         backgroundImage : "url('http://www.moreaboutmohan.com/files/assets/quickparkbig.png')"
     }
-    console.log(!this.props.params.userName);
     if (!this.props.params.userName) {
         return <span className="quickparkbig" style={position} ></span>
     }
