@@ -18,20 +18,16 @@ const compiler = webpack(config);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var dbURI = 'mongodb://localhost/ConnectionTest';
-mongoose.connect(dbURI);
-mongoose.connection.on('connected', function () {
-  console.log('Mongoose default connection open to ' + dbURI);
-});
+var uristring = 
+  process.env.MONGODB_URI || 
+  'mongodb://localhost/HelloMongoose';
 
-// If the connection throws an error
-mongoose.connection.on('error',function (err) {
-  console.log('Mongoose default connection error: ' + err);
-});
-
-// When the connection is disconnected
-mongoose.connection.on('disconnected', function () {
-  console.log('Mongoose default connection disconnected');
+mongoose.connect(uristring, function (err, res) {
+  if (err) { 
+    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+    console.log ('Succeeded connected to: ' + uristring);
+  }
 });
 
 process.on('SIGINT', function() {
