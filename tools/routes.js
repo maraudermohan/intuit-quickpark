@@ -115,7 +115,16 @@ router.route('/user/create')
   });
 router.route('/parking/park')
   .post(function (req, res) {
-    User.findOneAndUpdate({lotname: req.body.lotname}, {$set:{occupied : null }},  function (err, user) {
+    Parking.findOneAndUpdate({lotname: req.body.lotname}, {$set:{occupied : null }},  function (err, user) {
+      if (err) {
+        res.send(err);
+      }
+      res.json(user);
+    });
+  });
+  router.route('/parking/getspot')
+  .post(function (req, res) {
+    Parking.findOne({lotname: req.body.lotname}, function (err, user) {
       if (err) {
         res.send(err);
       }

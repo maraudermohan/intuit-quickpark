@@ -11,7 +11,7 @@ html, body {
 	display: -webkit-flex;
 	display: flex;
 }
-body h1, body h2 , body h3 , body h4 {
+body h1, body h2 , body h3 , body h4 , body p {
 	text-align: center;
 	color: white;
 }
@@ -137,9 +137,25 @@ span.btn.btn-primary , input.btn.btn-primary {
 	justify-content: center;
 	-webkit-align-items: center;
 	align-items: center;
+	position: relative;
 }
-.freespot h1, .freespot h2, .freespot h3, .freespot h4 {
-	color: black !important;
+.freespot #map {
+	width: 100%;
+	height: 100%;
+}
+.parkedSpot {
+	position: absolute;
+    width: 40%;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.6);
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    padding-bottom: 20px;
+    border-radius: 15px;
 }
 .twobuttons {
 	position: absolute;
