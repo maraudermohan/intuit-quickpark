@@ -61,7 +61,7 @@
     "webpack": "1.13.0",
     "webpack-dev-middleware": "1.6.1",
     "webpack-hot-middleware": "2.10.0",
-    "mongoose": "~3.6.13",
+    "mongoose": "^4.6.2",
     "body-parser": "~1.0.1",
     "whatwg-fetch": "1.0.0"
   },
