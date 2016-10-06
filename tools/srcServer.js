@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var uristring = 
-  'mongodb://heroku_tpp6p2h8:agellan07@ds017672.mlab.com:17672/heroku_tpp6p2h8';
+  'mongodb://mohan:agellan07@ds017672.mlab.com:17672/heroku_tpp6p2h8';
 
 mongoose.connect(uristring, function (err, res) {
   if (err) { 
