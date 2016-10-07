@@ -90,12 +90,6 @@ body h1, body h2 , body h3 , body h4 , body p {
 	height: 50px;
 	margin-left:20px;
 }
-.building-title {
-	width: 100%;
-	padding: 20px 0 20px 20px;
-	background-color: rgba(0,0,0,0.7);
-	text-align: left;
-}
 .building {
 	-webkit-flex-wrap: wrap;
 	flex-wrap: wrap;
@@ -104,26 +98,30 @@ body h1, body h2 , body h3 , body h4 , body p {
 	-webkit-align-items: center;
 	align-items: center;
 }
-.building.b1 {
-	margin-top: 140px;
-}
 span.btn.btn-primary , input.btn.btn-primary {
 	background-color: #365EBF;
 }
+.building-title {
+	width: 100%;
+    padding: 30px 20px 10px 20px;
+   	text-align: left;
+    border-bottom: 2px solid white;
+    color: white;
+}
 .btn.btn-primary.parkinglot {
-	width: 250px;
-	height : 150px ;
+	width: 48%;
+	height : 120px ;
 	font-size : 30px;
-	margin : 20px;
+	margin : 2px;
 	background-color: limegreen;
     border-color: #2e6da4;
-    -webkit-transition: transform 0.75s; 
-    transition: transform 0.75s;
+    -webkit-transition: background-color 0.75s; 
+    transition: background-color 0.75s;
 }
 .btn.btn-primary.parkinglot:hover {
-	transform : scale(1.1);
+	background-color: #365EBF;
 }
-.btn.btn-primary.parkinglot[disabled] {
+.btn.btn-primary.parkinglot[disabled] , .btn.btn-primary.parkinglot[disabled]:hover {
 	background-color: darkgrey;
 }
 .freespot {
@@ -139,7 +137,7 @@ span.btn.btn-primary , input.btn.btn-primary {
 	align-items: center;
 	position: relative;
 }
-.freespot #map {
+#map {
 	width: 100%;
 	height: 100%;
 }
@@ -162,41 +160,72 @@ span.btn.btn-primary , input.btn.btn-primary {
 	top:100px;
 	width: 100%;
 	height: 40px;
-	-webkit-align-items: center;
-	align-items: center;
 	background-color: rgba(0,0,0,0.8);
 	z-index: 3;
 }
 .twobuttons h3 {
-	width: 80%;
-	text-align: left;
-	padding-left: 20px;
-}
-.btn.togglebutton {
-	width: 12%;
-	height: 40px;
-	border-radius: 0px;
-	padding-top: 10px;
-	font-size: 16px;
-}
-.btn.togglebutton.selected {
-	border:0;
-	-moz-box-shadow:    inset 0 0 10px #000000;
-   -webkit-box-shadow: inset 0 0 10px #000000;
-   box-shadow:         inset 0 0 10px #000000;
-   opacity: 0.8;
+	height : 100%;
+	margin: 0;
+	padding: 6px 0 0 20px;
 }
 .buildingcontainer {
-	width: 100%;
+	width: 35%;
 	height: 100%;
-	background-color: #EAEAEA;
+	background-color: #393a3d;
 	overflow: scroll;
-	display:none;
-	padding-top: 130px;
+	padding-top: 10px;
+	-webkit-transition: width 0.75s; 
+    transition: width 0.75s;
+    -moz-box-shadow: inset 0 0 10px #000000;
+    -webkit-box-shadow: inset 0 0 10px #000000;
+    box-shadow: inset 0 0 10px #000000;
 }
-.mapcontainer {
-	margin-top: 95px;
+.buildingcontainer.closed {
+	width: 0%;
+}
+.map-container {
 	width: 100%;
-	height: 100%;
-	z-index:1;
+    height: 100%;
+    padding: 100px 0 0 0;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.sideButton {
+	width: 62px;
+    height: 100%;
+    background-color: #365EBF;
+    -webkit-flex-direction : column;
+    flex-direction : column;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.sideButton span {
+	width: 75%;
+    height: 6px;
+    background-color: white;
+    border-radius: 2px;
+    margin: 3px 0;
+}
+.parkcar #map {
+	width: calc(65% - 62px);
+	-webkit-transition: width 0.75s; 
+    transition: width 0.75s;
+}
+.parkcar #map.closed {
+	width: 94%;
+}
+.parkcar .parkedSpot {
+	display: none;
+	left: 30%;
+}
+.parkcar .parkedSpot input {
+	margin: 10px;
+}
+.parkcar .parkedSpot.visible {
+	display: -webkit-flex;
+	display: flex;
 }

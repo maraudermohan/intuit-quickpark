@@ -106,7 +106,16 @@ router.route('/user/create')
   });
   router.route('/parking/building')
   .post(function (req, res) {
-    Parking.find({building: req.body.building}, function (err, parking) {
+    Parking.find({building: req.body.building, accessible: req.body.accessible}, function (err, parking) {
+      if (err) {
+        res.send(err);
+      }
+      res.json(parking);
+    });
+  });
+  router.route('/parking/allfreespots')
+  .post(function (req, res) {
+    Parking.find({occupied: null , accessible: req.body.accessible}, function (err, parking) {
       if (err) {
         res.send(err);
       }
@@ -115,7 +124,16 @@ router.route('/user/create')
   });
 router.route('/parking/park')
   .post(function (req, res) {
-    Parking.findOneAndUpdate({lotname: req.body.lotname}, {$set:{occupied : null }},  function (err, user) {
+    Parking.findOneAndUpdate({lotname: req.body.lotname}, {$set:{occupied : req.body.occupied }},  function (err, user) {
+      if (err) {
+        res.send(err);
+      }
+      res.json(user);
+    });
+  });
+  router.route('/parking/free')
+  .post(function (req, res) {
+    Parking.findOneAndUpdate({lotname: req.body.lotname}, {$set:{occupied : null }}, function (err, user) {
       if (err) {
         res.send(err);
       }

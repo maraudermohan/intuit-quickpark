@@ -10,6 +10,15 @@ export default function updateParams(state = initialState, action) {
 	case 'UPDATE_LOCATION':
 		return Object.assign({},state,{location : action.content});
 
+	case 'DESIRED_SPOT':
+		return Object.assign({},state,{desiredSpot : action.content});
+
+	case 'GOOGLE_SCRIPT':
+		return Object.assign({},state,{googleScriptLoaded: action.bool});
+
+	case 'GOOGLE_MAP':
+		return Object.assign({},state,{googleMapLoaded: action.bool});
+
     default:
       return state;
   }

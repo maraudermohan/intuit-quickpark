@@ -22,8 +22,8 @@ class Building extends React.Component {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            building: buildprops
-            //accessible : this.props.params.isAccessible;
+            building: buildprops,
+            accessible : this.props.params.isAccessible
           })
         }).then(response => response.json()).then(function(json) {
             splitJSON(json);
@@ -35,40 +35,11 @@ class Building extends React.Component {
   }
 
   submitHandler(lotname) {
-    window.open("http://maps.google.com/?q=37.431472,-122.095722",'_blank');
-    var username = this.props.params.userName;
-    this.submitHandler2(lotname);
-    fetch("/api/user/park", {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: username, 
-        parkedSpot : lotname
-      })
-    }).then(response => console.log(response));
-    this.submitHandler2(lotname);
-  }
-  submitHandler2(lotname) {
-    var username = this.props.params.userName;   
-    fetch("/api/parking/park", {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        lotname: lotname, 
-        occupied : username
-      })
-    }).then(response => console.log(response)); 
-    this.props.dispatch(actions.login_user(username,this.props.params.isAccessible,lotname));
+    this.props.dispatch(actions.desiredSpot(lotname));
   }
 
   renderTile(value, index) {
-      var disabled = (this.state.jsonX[index].occupied) ? false : true;
+      var disabled = (this.state.jsonX[index].occupied) ? true : false;
       var lotname = this.state.jsonX[index].lotname;
       var url = "http://maps.google.com/?q="+this.state.jsonX[index].lat+","+this.state.jsonX[index].long;
       return <input

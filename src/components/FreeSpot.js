@@ -10,11 +10,17 @@ class FreeSpot extends React.Component {
   }
 
   componentWillMount() {
-    const script = document.createElement("script"), $this=this;
-    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBXLGCauVtZWC6ApZHGNv-QLOyckXS7Jak";
-    script.async = true;
-    document.body.appendChild(script);
-    $(script).on("load", ()=> {$this.initMap()});
+    this.props.dispatch(actions.googleMapLoaded(false));
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(actions.googleMapLoaded(false));
+  }
+
+  componentDidUpdate() {
+    if(!this.props.params.googleMapLoaded) {
+      this.initMap();
+    }
   }
 
   initMap() {
@@ -43,6 +49,7 @@ class FreeSpot extends React.Component {
                 label:lot.charAt(lot.length-1),
                 map: map
               });
+              $this.props.dispatch(actions.googleMapLoaded(true));
           }
       });
     
@@ -60,8 +67,24 @@ class FreeSpot extends React.Component {
         username: userName
       })
     }).then(response => response.json());
+    this.submitHandler2();
+  }
+
+  submitHandler2 () {
+    var userName = this.props.params.userName;
+    fetch("/api/parking/free", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        lotname: this.props.params.parkedSpot
+      })
+    }).then(response => response.json());
     this.props.dispatch(actions.login_user(this.props.params.userName,this.props.params.isAccessible,0));
   }
+
   render() {
     return (
       <div className="freespot flex-container">

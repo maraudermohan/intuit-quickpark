@@ -16,6 +16,16 @@ class App extends React.Component {
     }
   }
 
+  componentWillMount() {
+    const scriptMap = document.createElement("script") , $this = this;
+    scriptMap.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBXLGCauVtZWC6ApZHGNv-QLOyckXS7Jak";
+    scriptMap.async = true;
+    document.body.appendChild(scriptMap);
+    $(scriptMap).on("load" , () => {
+        $this.props.dispatch(actions.googleScriptLoaded(!$this.props.params.googleScriptLoaded));
+    })
+  }
+
   componentDidMount() {
     if ((this.getCookie('userName'))&&(!this.props.params.userName)) {
         this.props.dispatch(actions.login_user(this.getCookie('userName')));
