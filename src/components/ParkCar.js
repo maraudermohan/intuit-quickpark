@@ -169,7 +169,7 @@ class ParkCar extends React.Component {
     return (
       <div className="parkcar">
           <Header />
-          <div className="twobuttons flex-container"> 
+          <div className="twobuttons hidden-xs hidden-sm flex-container"> 
             <h3>{hintText}</h3>
           </div>
           <div className="map-container flex-container">

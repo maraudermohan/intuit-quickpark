@@ -71,6 +71,7 @@ body h1, body h2 , body h3 , body h4 , body p {
 	width: 80px;
 	display: inline-block;
 	background-size: contain;
+	background-repeat: no-repeat;
 	margin-right: 20px;
 }
 .header {
@@ -143,7 +144,7 @@ span.btn.btn-primary , input.btn.btn-primary {
 }
 .parkedSpot {
 	position: absolute;
-    width: 40%;
+    width: 50%;
     bottom: 0;
     background-color: rgba(0,0,0,0.6);
     -webkit-flex-direction: column;
@@ -216,11 +217,11 @@ span.btn.btn-primary , input.btn.btn-primary {
     transition: width 0.75s;
 }
 .parkcar #map.closed {
-	width: 94%;
+	width: calc(100% - 62px);
 }
 .parkcar .parkedSpot {
 	display: none;
-	left: 30%;
+	left: 25%;
 }
 .parkcar .parkedSpot input {
 	margin: 10px;
@@ -228,4 +229,40 @@ span.btn.btn-primary , input.btn.btn-primary {
 .parkcar .parkedSpot.visible {
 	display: -webkit-flex;
 	display: flex;
+}
+
+/* ----- MEDIA QUERY - PHONE ----- */
+@media screen 
+and (min-device-width: 320px) 
+and (max-device-width: 767px)  {
+	.quickparkbig {
+		width: 70%;
+	}
+	.login-page {
+	    padding: 5px 10px 10px 10px;
+	}
+	.parkedSpot {
+    	width: 95%;
+    }
+    .parkcar #map {
+		width: 0%;
+	}
+	.parkcar #map.closed {
+		width: calc(100% - 62px);
+	}
+	.buildingcontainer {
+		width: calc(100% - 62px);
+	}
+	.buildingcontainer.closed {
+		width: 0%;
+	}
+	.parkcar .parkedSpot {
+		left: 10px;
+	}
+	.parkcar .parkedSpot h2 {
+		font-size: 20px;
+	}
+	.parkcar .parkedSpot input {
+		margin: 0px;
+	}
 }
